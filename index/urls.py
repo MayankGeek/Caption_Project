@@ -8,7 +8,7 @@ urlpatterns = [
     path('register/',views.register,name="register"),
     path('login/',auth_view.LoginView.as_view(template_name="index/login.html"),name="login"),
     path('logout/',auth_view.LogoutView.as_view(template_name="index/login.html"),name="upload_image/logout"),
-    # path('upload/', views.image_upload_view,name="image_upload_view"),
-    path('upload_image/', views.upload_image,name="upload_image")
+    path('upload/', views.upload,name="upload"),
+    path('upload_save',views.upload_save,name="upload_save")
 ]
 

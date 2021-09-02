@@ -14,16 +14,10 @@ def path_and_rename(instance, filename):        #used for renaming image
     # return the whole path to the file
     return os.path.join(upload_to, filename)
 
-
 class Image(models.Model):
-    
-    image = models.ImageField(upload_to=path_and_rename, max_length=255, null=True, blank=True)
-    caption_1 = models.TextField(max_length=30,null=True,blank=False)
-    caption_2 = models.TextField(max_length=30,null=True,blank=False)
-    caption_3 = models.TextField(max_length=30,null=True,blank=False)
-    caption_4 = models.TextField(max_length=30,null=True,blank=False)
-    caption_5 = models.TextField(max_length=30,null=True,blank=False)
-    
+    image=models.FileField(max_length=255)
+
+
 
 
 #     # def __str__(self):

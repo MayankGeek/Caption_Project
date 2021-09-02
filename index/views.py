@@ -1,8 +1,9 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserRegisterForm
 from django.contrib import messages
-from .forms import ImageForm
+from django.core.files.storage import FileSystemStorage
+from .models import Image
 
 def home(request):
     return render(request,'index/home.html')
@@ -32,34 +33,16 @@ def logout(request):
     return render(request,'index/login.html')
 
 
-# def random_image(request):
-#     return render(request,'index/index.html')
+def upload(request):
+    return render(request,'index/upload.html')
 
-# def image_upload_view(request):
-#     """Process images uploaded by users"""
-#     if request.method == 'POST':
-#         form = ImageForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             # Get the current instance object to display in the template
-#             img_obj = form.instance
-#             return render(request, 'index/index.html', {'form': form, 'img_obj': img_obj})
-#     else:
-#         form = ImageForm()
-#     return render(request, 'index/index.html', {'form': form})
+def upload_save(request):
+    images=request.FILES.getlist("file[]")
+    for img in images:
+        fs=FileSystemStorage()
+        file_path=fs.save(img.name,img)
+        images=Image(image=file_path)
+        images.save()
+        
+    return HttpResponse("File Uploaded")
 
-
-#Function to display random image
-
-def upload_image(request):
-    """Process images uploaded by users"""
-    if request.method == 'POST':
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            # Get the current instance object to display in the template
-            img_obj = form.instance
-            return render(request, 'index/index.html', {'form': form, 'img_obj': img_obj})
-    else:
-        form = ImageForm()
-    return render(request, 'index/index.html', {'form': form})
