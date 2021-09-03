@@ -8,14 +8,15 @@ from django.contrib.auth.models import User
 
 
 def path_and_rename(instance, filename):        #used for renaming image
-    upload_to = 'images'
+    upload_to = 'media'
     ext = filename.split('.')[-1]
     filename = '{}.{}'.format(uuid4().hex, ext)
     # return the whole path to the file
     return os.path.join(upload_to, filename)
+    
 
 class Image(models.Model):
-    image=models.FileField(max_length=255)
+    image=models.FileField(upload_to=path_and_rename,max_length=255)
 
 
 

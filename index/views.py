@@ -46,3 +46,5 @@ def upload_save(request):
         
     return HttpResponse("File Uploaded")
 
+def caption(request):
+    return render(request,'index/caption.html')

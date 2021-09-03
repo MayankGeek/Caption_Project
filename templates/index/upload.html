@@ -12,6 +12,7 @@
   </head>
   <body>
     {% if user.is_authenticated%}
+    
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Upload_Image</a>
@@ -23,11 +24,14 @@
              
             </ul>
             <span class="navbar-text">
+              <a href="/caption/" class="btn btn-success  "style="margin-right:10px;">WRITE CAPTION</a> 
             <a href="/logout/" class="btn btn-success  "style="margin-right:10px;">LOGOUT</a> 
             </span>
           </div>
         </div>
       </nav>
+    
+   
       <form method="post"action="/upload_save" enctype="multipart/form-data">
         {%csrf_token%}
         <div class="container"style="background-color:white;height:1000px;Max-width:100%;">
@@ -76,6 +80,8 @@
     {%else%}
         <a href=" {%url 'login' %}"><button class="btn btn-primary btn-block" type="submit">SignIn</button></a>
     {% endif %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
   </body>
 </html>
 
