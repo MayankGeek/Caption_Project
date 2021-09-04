@@ -4,6 +4,7 @@ from .forms import UserRegisterForm
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from .models import Image
+import random
 
 def home(request):
     return render(request,'index/home.html')
@@ -46,5 +47,12 @@ def upload_save(request):
         
     return HttpResponse("File Uploaded")
 
+#views for the caption page
+
 def caption(request):
-    return render(request,'index/caption.html')
+    images=list(Image.objects.all())
+    rand_image=random.choice(images)
+    context={
+        'rand_image':rand_image
+    }
+    return render(request,'index/caption.html',context)
