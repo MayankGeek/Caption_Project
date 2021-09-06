@@ -26,9 +26,11 @@ def register(request):
 
 
 def login(request):
+    
     return render(request,'index/login.html')
 
-
+def index(request):
+    return render(request,'index/index.html')
 
 def logout(request):
     return render(request,'index/login.html')
@@ -45,7 +47,7 @@ def upload_save(request):
         images=Image(image=file_path)
         images.save()
         
-    return HttpResponse("File Uploaded")
+    return render(request,'index/success_upload.html')
 
 #views for the caption page
 
@@ -56,3 +58,6 @@ def caption(request):
         'rand_image':rand_image
     }
     return render(request,'index/caption.html',context)
+
+def success_upload(request):
+    return render(request,'index/success_upload.html')

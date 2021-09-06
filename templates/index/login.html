@@ -16,6 +16,8 @@
   </head>
 
   <body>
+   
+
     <form class="form-signin"action=""method="POST">
       {%csrf_token%}
       <div class="text-center mb-4">
@@ -37,7 +39,8 @@
       </div>
 
       {{form|crispy}}
-      <button class="btn btn-lg btn-danger btn-block" type="submit">Login</button>
+      <button class="btn btn-lg btn-danger btn-block" type="submit">Login</button><br>
+      Don't have a account?<a href=" {%url 'register' %}" class="btn btn-link  "style="margin-right:10px;">Register</a>
       
     </form>
   </body>
